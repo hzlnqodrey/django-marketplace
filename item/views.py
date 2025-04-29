@@ -1,5 +1,5 @@
 from django.contrib.auth.decorators import login_required
-from django.shortcuts import render, get_object_or_404
+from django.shortcuts import render, get_object_or_404, redirect
 
 from item.models import Item
 from .forms import NewItemForm
@@ -20,9 +20,22 @@ def detail(request, pk):
 # if not authenticated, the user/guess will be redirected to login page
 @login_required
 def new(request):
-    form = NewItemForm()
+
+    if request.method == 'POST':
+        form = NewItemForm(request.POST, request.FILES)
+
+        if form.is_valid():
+            # commit false because "createdBy" field still not there, therefore it will cause error in DB
+            item = form.save(commit=False)
+            item.created_by = request.user
+            item.save()
+
+            # redirect user to the detailed new item page
+            return redirect('item:detail', pk=item.id)
+    else:
+        form = NewItemForm()
 
     return render(request, 'item/form.html', {
         'form': form,
-        'title': 'New title'
+        'title': 'New Item'
     })
