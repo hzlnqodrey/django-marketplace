@@ -41,7 +41,7 @@ def new(request):
     })
 
 @login_required
-def delete(request):
+def delete(request, pk):
     items = get_object_or_404(Item, pk=pk, created_by=request.user)
     items.delete()
 
