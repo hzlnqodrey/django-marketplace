@@ -4,6 +4,8 @@ time = [
     1.22.00 - New Item form 
 
     1.32.33 - Deleting Items
+
+    1.37.00 - Editing Items
 ]
 
 Login Redirect in settings.py - project root name folder
