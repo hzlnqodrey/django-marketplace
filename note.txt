@@ -9,7 +9,7 @@ time = [
 
     1.43.51 - All Items Browse
 
-    - Sidebar Browse
+    1.47.00 - Sidebar Browse
 ]
 
 Login Redirect in settings.py - project root name folder
