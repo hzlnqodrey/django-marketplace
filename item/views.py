@@ -15,6 +15,9 @@ def items_browse(request):
 
     items = Item.objects.filter(is_sold=False)
 
+    if category_id:
+        items = items.filter(category_id=category_id)
+
     if query:
         items = items.filter(Q(name__icontains=query) | Q(description_icontains=query))
 
