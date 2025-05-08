@@ -11,6 +11,7 @@ def items_browse(request):
     query = request.GET.get('query', '')
 
     categories = Category.objects.all()
+    category_id = request.GET.get('category', 0)
 
     items = Item.objects.filter(is_sold=False)
 
@@ -21,6 +22,7 @@ def items_browse(request):
         'items': items,
         'query': query,
         'categories': categories,
+        'category_id': int(category_id)
     })
 
 
