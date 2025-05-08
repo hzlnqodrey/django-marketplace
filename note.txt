@@ -10,6 +10,10 @@ time = [
     1.43.51 - All Items Browse
 
     1.47.00 - Sidebar Browse
+
+    1.47.48 - Q django
+
+    
 ]
 
 Login Redirect in settings.py - project root name folder

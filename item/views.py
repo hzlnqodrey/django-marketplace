@@ -2,13 +2,15 @@ from django.contrib.auth.decorators import login_required
 from django.shortcuts import render, get_object_or_404, redirect
 from django.db.models import Q
 
-from item.models import Item
+from item.models import Item, Category
 from .forms import NewItemForm, EditItemForm
 
 
 # List View
 def items_browse(request):
     query = request.GET.get('query', '')
+
+    categories = Category.objects.all()
 
     items = Item.objects.filter(is_sold=False)
 
@@ -17,7 +19,8 @@ def items_browse(request):
 
     return render(request, 'item/items.html', {
         'items': items,
-        'query': query
+        'query': query,
+        'categories': categories,
     })
 
 
