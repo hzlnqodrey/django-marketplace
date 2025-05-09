@@ -4,7 +4,11 @@
 
 
 {% block content %}
+
+
 <div class="pb-6 grid grid-cols-4 gap-4 bg-gray-100">
+
+    <!-- Side Bar -->
     <div class="col-span-1">
         <form method="get" action="{% url 'item:items' %}">
             <input name="query" type="text" class="w-full py-4 px-6 border rounded-xl" value="{{ query }}"
@@ -32,8 +36,20 @@
 
             {% endfor %}
         </ul>
+
+        <hr class="my-6">
+
+        <p class="font-semibold"> Clear Filter</p>
+
+        <ul>
+            <li>
+                <a href="{% url 'item:items' %}"
+                    class="mt-2 py-4 px-8 inline-block bg-yellow-500 text-lg rounded-xl text-white">Clear</a>
+            </li>
+        </ul>
     </div>
 
+    <!-- Item Showing -->
     <div class="col-span-3">
         <div class="grid grid-cols-3 gap-3">
             {% for item in items %}

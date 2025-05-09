@@ -13,7 +13,9 @@ time = [
 
     1.47.48 - Q django
 
-    
+    1.52.15 - Category Logic
+
+    - Clear Filters
 ]
 
 Login Redirect in settings.py - project root name folder
