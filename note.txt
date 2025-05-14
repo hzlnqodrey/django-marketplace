@@ -15,7 +15,7 @@ time = [
 
     1.52.15 - Category Logic
 
-    - Clear Filters
+    1.53.33 - Clear Filters
 ]
 
 Login Redirect in settings.py - project root name folder
