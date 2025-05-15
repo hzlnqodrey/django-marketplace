@@ -22,7 +22,8 @@ def new_conversation(request, item_pk):
 
     # If there is already conversation between Owner and Buyer
     if conversations:
-        pass # redirected to conversation
+        # redirected to conversation
+        return redirect('conversation:detail', pk=conversations.first().id)
 
     if request.method == 'POST':
         form = ConversationMessageForm(request.POST)
@@ -66,6 +67,26 @@ def inbox(request):
 def detail(request, pk):
     conversation = Conversation.objects.filter(members__in=[request.user.id]).get(pk=pk)
 
+    # See if the form has been submitted
+    # if yes, create a new conversation message
+    if request.method == 'POST':
+        form = ConversationMessageForm(request.POST)
+
+        if form.is_valid():
+            conversation_message = form.save(commit=False)
+            conversation_message.conversation = conversation
+            conversation_message.created_by = request.user
+            conversation_message.save()
+
+            conversation.save()
+
+            return redirect('conversation:detail', pk=pk)
+    
+    # If there is no, craete empty convos form
+    else:
+        form = ConversationMessageForm()
+
     return render(request, 'conversation/detail.html', {
-        'conversation': conversation
+        'conversation': conversation,
+        'form': form
     })
