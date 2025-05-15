@@ -16,7 +16,7 @@ def new_conversation(request, item_pk):
     # Conversation Logic
     # Checking and Filter if the requested user id is matched with item object filter to conversation object
     # Make a new conversations
-    conversations = Conversation.object.filter(item=item).filter(members__in=[request.user.id])
+    conversations = Conversation.objects.filter(item=item).filter(members__in=[request.user.id])
 
     # If there is already conversation between Owner and Buyer
     if conversations:
