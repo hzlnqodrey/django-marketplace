@@ -2,6 +2,7 @@
 # views.py -> *.html ->  urls.py
 
 from django.shortcuts import render, redirect
+from django.contrib.auth import logout
 
 from item.models import Category, Item
 from .forms import SignupForm
@@ -35,3 +36,7 @@ def signup(request):
     return render(request, 'core/signup.html', {
         'form': form
     })
+
+def logout_view(request):
+    logout(request)
+    return redirect('core:login')
